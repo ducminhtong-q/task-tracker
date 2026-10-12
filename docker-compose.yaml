@@ -1,0 +1,40 @@
+services:
+  app:
+    build: .
+    ports:
+      - "8081:8080"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - SPRING_MONGODB_URI=mongodb://mongo:27017/task_tracker_db
+    depends_on:
+      - mongo
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+  notification-service:
+    build: ../notification-service
+    ports:
+      - "8082:8082"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+  mongo:
+    image: mongo:7
+    ports:
+      - "27018:27017"
+    volumes:
+      - mongo_data:/data/db
+
+  api-gateway:
+    build: ../api-gateway
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+volumes:
+  mongo_data:

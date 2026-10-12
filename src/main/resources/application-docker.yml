@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: task-service
+  mongodb:
+    uri: mongodb://mongo:27017/task_tracker_db
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://host.docker.internal:8761/eureka
