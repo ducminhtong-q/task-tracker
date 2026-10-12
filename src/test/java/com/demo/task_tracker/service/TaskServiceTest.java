@@ -1,5 +1,6 @@
 package com.demo.task_tracker.service;
 
+import com.demo.task_tracker.client.NotificationClient;
 import com.demo.task_tracker.dto.TaskRequest;
 import com.demo.task_tracker.dto.TaskResponse;
 import com.demo.task_tracker.exception.TaskNotFoundException;
@@ -22,6 +23,9 @@ import static org.mockito.Mockito.*;
 class TaskServiceTest {
     @Mock
     private TaskRepository repository;
+
+    @Mock
+    private NotificationClient notificationClient;
 
     @InjectMocks
     private TaskService service;
