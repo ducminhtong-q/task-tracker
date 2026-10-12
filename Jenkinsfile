@@ -1,9 +1,11 @@
 pipeline {
-    agent any
+    agent {
+        label 'docker'
+    }
 
     environment {
         IMAGE_NAME = 'task-tracker-app'
-        MVN_REPO   = '-Dmaven.repo.local=/var/jenkins_home/.m2/repository'
+        MVN_REPO   = '-Dmaven.repo.local=/home/jenkins/agent/.m2/repository'
     }
 
     stages {
